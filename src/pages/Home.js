@@ -17,7 +17,7 @@ const Home = (props) => {
         <h2>Catalog Search</h2>
         <input
           type="text"
-          placeholder="search catalog by Title"
+          placeholder="search catalog"
           size="100"
           style={{ marginLeft: "200px" }}
           onChange={(e) => props.handleSearchingCatalog(e.target.value)}
