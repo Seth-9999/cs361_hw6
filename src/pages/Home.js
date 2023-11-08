@@ -6,7 +6,25 @@ const Home = (props) => {
   const [itemAuthor, setItemAuthor] = useState("");
   const [targetBookNumber, setTargetBookNumber] = useState(0);
 
+  console.log("Home.js | printing props.items | line#9");
+  console.log(props.items);
   let currItems = props.items;
+
+  const handleSearchInput = (e) => {
+    // console.log("array");
+    // console.log(arr);
+    console.log("Home.js | handle Search input | was fired line16");
+    // console.log(arr);
+    console.log("Home.js | handle Search input | was fired line18");
+
+    if (e.target.value === "") {
+      console.log("Home.js | handle Search input | was fired line21");
+      props.handleSearchingCatalog("");
+    } else {
+      console.log("Home.js | handle Search input | was fired line24");
+      props.handleSearchingCatalog(e.target.value);
+    }
+  };
 
   return (
     <>
@@ -20,7 +38,7 @@ const Home = (props) => {
           placeholder="search catalog"
           size="100"
           style={{ marginLeft: "200px" }}
-          onChange={(e) => props.handleSearchingCatalog(e.target.value)}
+          onChange={(e) => handleSearchInput(e)}
         ></input>
 
         <div id="filtered-search-list">
@@ -39,6 +57,7 @@ const Home = (props) => {
 
       <section>
         <h2>Add Item</h2>
+        <p>If filtering catalog, might need to un-filter the catalog </p>
         <label>Title</label>
         <input
           placeholder="Ender's Game"

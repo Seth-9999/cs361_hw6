@@ -9,6 +9,7 @@ import GetCard from "./pages/GetCard";
 import FAQ from "./pages/FAQ";
 import Feedback from "./pages/Feedback";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function App() {
   const libraryItems = [
@@ -45,18 +46,43 @@ function App() {
   const [items, setItems] = useState(libraryItems);
   const [numItems, setNumItems] = useState(4);
   const [filteredResults, setFilteredResults] = useState(items);
+  const [filterText, setFilterText] = useState("");
 
-  const handleSearchingCatalog = (searchText) => {
+  const handleSearchingCatalog = (searchText, arr = -1) => {
+    setFilterText(searchText);
+    // console.log("Where are myItems arr test results");
+    // console.log(myItems);
     let newResults = [];
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].title.includes(searchText)) {
-        newResults.push(items[i]);
-      } else if (items[i].author.includes(searchText)) {
-        newResults.push(items[i]);
-      } else if (items[i].itemNo.toString().includes(searchText)) {
-        newResults.push(items[i]);
+    if (arr === -1) {
+      arr = items;
+    }
+
+    console.log("App.jS handleSearchingCatalog line#57 fired");
+    console.log(filteredResults);
+    console.log(filterText);
+    console.log(searchText);
+    console.log("items: ");
+    console.log(items);
+    console.log("App.jS handleSearchingCatalog line#61 fired");
+    // if (searchText === "") {
+    //   setFilteredResults(myItems);
+    //   return;
+    // }
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].title.includes(searchText)) {
+        newResults.push(arr[i]);
+      } else if (arr[i].author.includes(searchText)) {
+        newResults.push(arr[i]);
+      } else if (arr[i].itemNo.toString().includes(searchText)) {
+        newResults.push(arr[i]);
       }
     }
+
+    // alert(newResults);
+    // console.log(newResults);
+    console.log("App.jS handleSearchingCatalog line#78 fired");
+    console.log(newResults);
+    console.log("App.jS handleSearchingCatalog line#80 fired");
     setFilteredResults(newResults);
   };
 
@@ -138,8 +164,13 @@ function App() {
       isAvailable: 1,
     };
     const newItems = [...items, newItem];
+    console.log("App.js HandleAddItem fired line#159");
     console.log(newItems);
+    console.log("App.js HandleAddItem fired line#161");
+    // console.log(newItems);
     setItems(newItems);
+
+    handleSearchingCatalog(filterText, newItems);
   };
 
   return (

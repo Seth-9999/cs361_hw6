@@ -36,6 +36,9 @@ const SharedLayout = () => {
         <button>Placeholder (Not Implemented)</button>
       </div>
       <Outlet />
+      <footer>
+        <p>Copyright Jon Riemer</p>
+      </footer>
     </>
   );
 };
