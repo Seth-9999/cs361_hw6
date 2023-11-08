@@ -13,8 +13,8 @@ const SharedLayout = () => {
   //   }
 
   const handleLogoClick = () => {
-    alert("Update navigate function to go to home page rather than error page");
-    navigate("/blah");
+    // alert("Update navigate function to go to home page rather than error page");
+    navigate("/");
     {
       /* change navigate("/blah") to navigate(/) to go to home page */
     }
